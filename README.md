@@ -16,7 +16,7 @@ _Note:_ Decimal library can "only" represent numbers with a maximum of 2^31 digi
 
 ## Install
 
-Run `go get github.com/shopspring/decimal`
+Run `go get github.com/qauzy/math`
 
 ## Requirements 
 
@@ -29,25 +29,25 @@ package main
 
 import (
 	"fmt"
-	"github.com/shopspring/decimal"
+	"github.com/qauzy/math"
 )
 
 func main() {
-	price, err := decimal.NewFromString("136.02")
+	price, err := math.NewFromString("136.02")
 	if err != nil {
 		panic(err)
 	}
 
-	quantity := decimal.NewFromInt(3)
+	quantity := math.NewFromInt(3)
 
-	fee, _ := decimal.NewFromString(".035")
-	taxRate, _ := decimal.NewFromString(".08875")
+	fee, _ := math.NewFromString(".035")
+	taxRate, _ := math.NewFromString(".08875")
 
 	subtotal := price.Mul(quantity)
 
-	preTax := subtotal.Mul(fee.Add(decimal.NewFromFloat(1)))
+	preTax := subtotal.Mul(fee.Add(math.NewFromFloat(1)))
 
-	total := preTax.Mul(taxRate.Add(decimal.NewFromFloat(1)))
+	total := preTax.Mul(taxRate.Add(math.NewFromFloat(1)))
 
 	fmt.Println("Subtotal:", subtotal)                      // Subtotal: 408.06
 	fmt.Println("Pre-tax:", preTax)                         // Pre-tax: 422.3421
@@ -59,7 +59,7 @@ func main() {
 
 ## Documentation
 
-http://godoc.org/github.com/shopspring/decimal
+http://godoc.org/github.com/qauzy/math
 
 ## Production Usage
 

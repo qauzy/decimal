@@ -9,7 +9,7 @@
 // because 2 divides 10; cannot do decimal floating point
 // in multiprecision binary precisely.
 
-package decimal
+package math
 
 type floatInfo struct {
 	mantbits uint

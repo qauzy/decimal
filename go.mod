@@ -1,3 +1,3 @@
-module github.com/shopspring/decimal
+module github.com/qauzy/math
 
 go 1.13
