@@ -59,13 +59,19 @@ var ExpMaxIterations = 1000
 // Zero constant, to make computations faster.
 // Zero should never be compared with == or != directly, please use decimal.Equal or decimal.Cmp instead.
 var Zero = New(0, 1)
+var ZERO = New(0, 1)
 
 var zeroInt = big.NewInt(0)
 var oneInt = big.NewInt(1)
+var ONE = big.NewInt(1)
+
 var twoInt = big.NewInt(2)
 var fourInt = big.NewInt(4)
 var fiveInt = big.NewInt(5)
+
 var tenInt = big.NewInt(10)
+var TEN = big.NewInt(10)
+
 var twentyInt = big.NewInt(20)
 
 var factorials = []BigDecimal{New(1, 0)}
@@ -847,6 +853,19 @@ func abs(n int32) int32 {
 		return -n
 	}
 	return n
+}
+
+func (d BigDecimal) CompareTo(d2 BigDecimal) int {
+	d.ensureInitialized()
+	d2.ensureInitialized()
+
+	if d.exp == d2.exp {
+		return d.value.Cmp(d2.value)
+	}
+
+	rd, rd2 := RescalePair(d, d2)
+
+	return rd.value.Cmp(rd2.value)
 }
 
 // Cmp compares the numbers represented by d and d2 and returns:
